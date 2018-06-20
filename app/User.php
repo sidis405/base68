@@ -27,16 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-    public function tasks()
+    // ha posts
+    public function posts()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Post::class);
+    }
+
+    // ha comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
-
-
-// $users
-//  $user -> tasks
-
-// $user->tasks // risultato della relazione
-// $user->tasks() // la relazione stessa. Va eseguita
