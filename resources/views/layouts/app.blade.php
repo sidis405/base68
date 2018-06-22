@@ -34,7 +34,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-default" href="{{ route('posts.create') }}">+ Nuovo Post</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,7 +74,16 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        @yield('content')
+                    </div>
+                    <div class="col-md-2">
+                        <h3>Archive</h3>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

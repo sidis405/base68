@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    // protected $primaryKey = 'slug';
+    // public $increments = false;
+
     // appartiene a un User
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     // appartiene a una Catagory
