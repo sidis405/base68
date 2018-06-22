@@ -9,6 +9,9 @@ class Post extends Model
     // protected $primaryKey = 'slug';
     // public $increments = false;
 
+    // protected $fillable = ['title', 'category_id', 'preview', 'body'];
+    protected $guarded = [];
+
     // appartiene a un User
     public function user()
     {
@@ -32,5 +35,19 @@ class Post extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    // accessors - getters
+    // public function getTitleAttribute($title)
+    // {
+    //     return strtoupper($title);
+    // }
+
+    // mutators - setters
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['title'] = $title;
+        $this->attributes['slug'] = str_slug($title);
+        // $this->attributes['user_id'] = auth()->id();
     }
 }

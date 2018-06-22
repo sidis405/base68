@@ -4,8 +4,13 @@ Route::get('/', 'PostsController@index');
 
 // Route::get('posts/{post}', 'PostsController@show')->name('posts.show')->where('post', '[0-9]+');
 Route::get('posts/create', 'PostsController@create')->name('posts.create');
+Route::post('posts', 'PostsController@store')->name('posts.store');
 
 Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
+
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
