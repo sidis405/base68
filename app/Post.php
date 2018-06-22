@@ -50,4 +50,10 @@ class Post extends Model
         $this->attributes['slug'] = str_slug($title);
         // $this->attributes['user_id'] = auth()->id();
     }
+
+    private function getSlugNames($slug)
+    {
+        //altri slug uguali != id
+        // -2 -3
+    }
 }
