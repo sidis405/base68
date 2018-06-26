@@ -6,13 +6,11 @@ Route::get('/', 'PostsController@index');
 Route::get('posts/create', 'PostsController@create')->name('posts.create');
 Route::post('posts', 'PostsController@store')->name('posts.store');
 
+Route::get('posts/{post}/edit', 'PostsController@edit')->name('posts.edit');
+
+Route::patch('posts/{post}', 'PostsController@update')->name('posts.update');
+
 Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
-
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 // GET, POST, PATCH|PUT, DELETE

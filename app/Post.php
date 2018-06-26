@@ -10,7 +10,7 @@ class Post extends Model
     // public $increments = false;
 
     // protected $fillable = ['title', 'category_id', 'preview', 'body'];
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     // appartiene a un User
     public function user()
@@ -49,6 +49,17 @@ class Post extends Model
         $this->attributes['title'] = $title;
         $this->attributes['slug'] = str_slug($title);
         // $this->attributes['user_id'] = auth()->id();
+    }
+
+    public function getCoverAttribute($cover)
+    {
+        return ($cover) ?? '/cover.jpg'; // null coalescence operator
+        // return ($cover) ? $cover : '/cover.jpg'; // operatore ternario
+        // if ($cover) {
+        //     return $cover;
+        // }
+
+        // return '/cover.jpg';
     }
 
     private function getSlugNames($slug)

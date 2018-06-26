@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Sid',
                 'email' => 'forge405@gmail.com',
+                'role' => 'admin',
                 'password' => bcrypt(env('TESTPASS')),
             ]
         );

@@ -35,9 +35,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-default" href="{{ route('posts.create') }}">+ Nuovo Post</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-default" href="{{ route('posts.create') }}">+ Nuovo Post</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

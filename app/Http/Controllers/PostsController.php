@@ -7,6 +7,7 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Events\PostWasUpdatedEvent;
 
 class PostsController extends Controller
 {
@@ -100,6 +101,31 @@ class PostsController extends Controller
         $post = auth()->user()->posts()->create($request->validated());
 
         $post->tags()->sync($request->tags);
+
+        return redirect()->route('posts.show', $post);
+    }
+
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        $post->load('tags');
+
+        return view('posts.edit', compact('post', 'categories', 'tags'));
+    }
+
+    public function update(PostRequest $request, Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->update($request->validated());
+
+        $post->tags()->sync($request->tags);
+
+        event(new PostWasUpdatedEvent($post));
 
         return redirect()->route('posts.show', $post);
     }
