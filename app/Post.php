@@ -51,8 +51,15 @@ class Post extends Model
         // $this->attributes['user_id'] = auth()->id();
     }
 
+    public function setCoverAttribute($cover)
+    {
+        // $this->attributes['cover'] = Storage::disk('s3')->putFile('covers', $cover);
+        $this->attributes['cover'] = $cover->store('covers');
+    }
+
     public function getCoverAttribute($cover)
     {
+        // return ($cover) ? 'storage/' . $cover : '/cover.jpg'; // null coalescence operator
         return ($cover) ?? '/cover.jpg'; // null coalescence operator
         // return ($cover) ? $cover : '/cover.jpg'; // operatore ternario
         // if ($cover) {

@@ -24,10 +24,11 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:125',
-            'preview' => 'required|min:3|max:125',
+            'title' => 'required|min:3|max:254',
+            'preview' => 'required|min:3|max:254',
             'body' => 'required|min:3',
             'category_id' => 'required|exists:categories,id',
+            'cover' => 'sometimes|image|mimes:jpeg,bmp,png',
             // 'tags' => 'required|array',
         ];
     }

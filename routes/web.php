@@ -12,11 +12,15 @@ Route::patch('posts/{post}', 'PostsController@update')->name('posts.update');
 
 Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
 
+Route::delete('posts/{post}', 'PostsController@destroy')->name('posts.destroy');
+
 Auth::routes();
+
 // GET, POST, PATCH|PUT, DELETE
 
 // posts
 // REST - CRUD = Create, Read, Updata, Delete
+
 // index - Lista risorse                                    - GET - /posts
 // create - Visualizza form creazione nuovo record          - GET - /posts/create
 // store - Salva nuovo record nel database                  - POST - /posts

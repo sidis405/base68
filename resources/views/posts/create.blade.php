@@ -4,7 +4,7 @@
 
 <h4>Create a new Post</h4>
 
-<form method="POST" action="{{ route('posts.store') }}">
+<form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
 
     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
     {{-- {{ csrf_field() }} --}}
@@ -13,6 +13,11 @@
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+    </div>
+
+    <div class="form-group">
+        <label for="cover">Cover Photo</label>
+        <input type="file" class="form-control" name="cover">
     </div>
 
     <div class="form-group">

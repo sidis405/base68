@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        <img src="{{ $post->cover }}" style="width: 100%">
+        <img src="{{ url($post->cover) }}" style="width: 100%">
 
         <div class="card">
             <div class="card-header">

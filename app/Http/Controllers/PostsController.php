@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Post;
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Events\PostWasUpdatedEvent;
 
@@ -55,52 +54,18 @@ class PostsController extends Controller
 
     public function store(PostRequest $request)
     {
-        // return $request->all();
-        // return $request->only('title', 'preview', 'category_id', 'body');
-
-        // return \Auth::user()->id;
-        // return auth()->user()->id;
-        // return auth()->id();
-        // return request()->all();
-        // return $request->all();
-        // return $request->get('preview');
-        // return $request->preview;
-
-        // title
-        // slug
-        // preview
-        // category_id
-        // body
-        // user_id
-
-        // $post = new Post;
-        // $post->title = $request->title;
-        // $post->preview = $request->preview;
-        // $post->category_id = $request->category_id;
-        // $post->body = $request->body;
-
-        // $post->save();
-
-        // $post = Post::create([
-        //     'title' => $request->title,
-        //     'preview' => $request->preview,
-        //     'category_id' => $request->category_id,
-        //     'body' => $request->body,
-        // ]);
-
-        // $post = Post::create($request->only('title', 'preview', 'category_id', 'body'));
-
-        // $request->validate([
-        //     'title' => 'required|min:3|max:125',
-        //     'preview' => 'required|min:3|max:125',
-        //     'body' => 'required|min:3',
-        //     'category_id' => 'required|exists:categories,id',
-        //     'tags' => 'required|array',
-        // ]);
-
         $post = auth()->user()->posts()->create($request->validated());
 
+
+        // $post->cover = Storage::disk('public_vero')->putFile('covers', $file);
+        // $post->cover = $request->file('cover');
+        // $post->save();
+
         $post->tags()->sync($request->tags);
+
+        // foreach ($request->tag as $tag) {
+        //     $post->tags()->attach($tag);
+        // }
 
         return redirect()->route('posts.show', $post);
     }

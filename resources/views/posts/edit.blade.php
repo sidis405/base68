@@ -4,7 +4,7 @@
 
 <h4>Editing post: {{ $post->title }}</h4>
 
-<form method="POST" action="{{ route('posts.update', $post) }}">
+<form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
 
     @csrf
     @method('PATCH')
@@ -15,6 +15,11 @@
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control" name="title" value="{{ old('title', $post->title) }}">
+    </div>
+
+    <div class="form-group">
+        <label for="cover">Cover Photo</label>
+        <input type="file" class="form-control" name="cover">
     </div>
 
     <div class="form-group">
@@ -49,6 +54,16 @@
     <div class="form-group">
         <button type="submit" class="btn btn-warning btn-block">Update post</button>
     </div>
+</form>
+
+<hr>
+
+<form action="{{ route('posts.destroy', $post) }}" method="POST">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure?')">Delete Post</button>
 </form>
 
 @stop
