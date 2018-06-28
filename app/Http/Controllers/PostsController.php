@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use App\Post;
 use App\Category;
 use App\Http\Requests\PostRequest;
@@ -28,10 +27,9 @@ class PostsController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        $tags = Tag::all();
+        $post = new Post;
 
-        return view('posts.create', compact('categories', 'tags'));
+        return view('posts.create', compact('post'));
     }
 
     public function store(PostRequest $request)
@@ -40,19 +38,16 @@ class PostsController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->with('type', 'success')->with('status', 'Post was created');
     }
 
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
 
-        $categories = Category::all();
-        $tags = Tag::all();
-
         $post->load('tags');
 
-        return view('posts.edit', compact('post', 'categories', 'tags'));
+        return view('posts.edit', compact('post'));
     }
 
     public function update(PostRequest $request, Post $post)
@@ -63,17 +58,14 @@ class PostsController extends Controller
 
         $post->tags()->sync($request->tags);
 
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->with('type', 'warning')->with('status', 'Post was updated');
     }
 
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
-
-        // cancellare il post
         $post->delete();
 
-        // dove reindirizzare
-        return redirect('/');
+        return redirect('/')->with('type', 'danger')->with('status', 'Post was deleted');
     }
 }

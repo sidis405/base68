@@ -4,6 +4,8 @@ Route::get('/', 'PostsController@index')->name('posts.index');
 Route::resource('posts', 'PostsController')->except('index');
 Auth::routes();
 
+Route::get('category/{category}', 'CategoriesController@show')->name('categories.show');
+
 // Route::resource('posts.comments', 'CommentsController')->only('store', 'update', 'delete');
 
 // creare

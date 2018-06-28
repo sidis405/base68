@@ -29,7 +29,15 @@ class PostRequest extends FormRequest
             'body' => 'required|min:3',
             'category_id' => 'required|exists:categories,id',
             'cover' => 'sometimes|image|mimes:jpeg,bmp,png',
-            // 'tags' => 'sometimes|array',
+            // 'tags' => 'required|array',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'You must specify a title.',
+            'title.min' => 'It must be :min characters long.',
         ];
     }
 }

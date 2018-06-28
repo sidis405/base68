@@ -78,13 +78,14 @@
 
         <main class="py-4">
             <div class="container">
-                @include('layouts.errors')
+                {{-- @include('layouts.errors') --}}
+                @include('layouts.feedback')
                 <div class="row">
                     <div class="col-md-10">
                         @yield('content')
                     </div>
                     <div class="col-md-2">
-                        <h3>Archive</h3>
+                        @include('sidebar.sidebar')
                     </div>
                 </div>
             </div>
