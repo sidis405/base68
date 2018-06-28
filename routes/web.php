@@ -1,21 +1,35 @@
 <?php
 
-Route::get('/', 'PostsController@index');
-
-// Route::get('posts/{post}', 'PostsController@show')->name('posts.show')->where('post', '[0-9]+');
-Route::get('posts/create', 'PostsController@create')->name('posts.create');
-Route::post('posts', 'PostsController@store')->name('posts.store');
-
-Route::get('posts/{post}/edit', 'PostsController@edit')->name('posts.edit');
-
-Route::patch('posts/{post}', 'PostsController@update')->name('posts.update');
-
-Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
-
-Route::delete('posts/{post}', 'PostsController@destroy')->name('posts.destroy');
-
+Route::get('/', 'PostsController@index')->name('posts.index');
+Route::resource('posts', 'PostsController')->except('index');
 Auth::routes();
 
+// Route::resource('posts.comments', 'CommentsController')->only('store', 'update', 'delete');
+
+// creare
+// Route::post('posts/{post}/comments', 'CommentsController@store');
+// Route::patch('posts/{post}/comments/{comment}', 'CommentsController@udpate');
+// Route::delete('posts/{post}/comments/{comments}', 'CommentsController@destroy');
+
+// cancellare
+
+// Route::get('deploy-webhook', 'GihubController@deply')
+// Route::get('rebase-webhook', 'GihubController@rebase')
+
+
+//POST //posts/1/comments -
+//PUT //posts/1/comments -
+//DELETE //posts/1/comments -
+
+// Route::get('posts/create', 'PostsController@create')->name('posts.create');
+// Route::post('posts', 'PostsController@store')->name('posts.store');
+// Route::get('posts/{post}/edit', 'PostsController@edit')->name('posts.edit');
+// Route::patch('posts/{post}', 'PostsController@update')->name('posts.update');
+// Route::get('posts/{post}', 'PostsController@show')->name('posts.show');
+// Route::delete('posts/{post}', 'PostsController@destroy')->name('posts.destroy');
+
+
+// Route::get('posts/{post}', 'PostsController@show')->name('posts.show')->where('post', '[0-9]+');
 // GET, POST, PATCH|PUT, DELETE
 
 // posts

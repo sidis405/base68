@@ -56,14 +56,18 @@
     </div>
 </form>
 
-<hr>
+@can('delete', $post)
 
-<form action="{{ route('posts.destroy', $post) }}" method="POST">
+    <hr>
 
-    @csrf
-    @method('DELETE')
+    <form action="{{ route('posts.destroy', $post) }}" method="POST">
 
-    <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure?')">Delete Post</button>
-</form>
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure?')">Delete Post</button>
+    </form>
+
+@endcan
 
 @stop

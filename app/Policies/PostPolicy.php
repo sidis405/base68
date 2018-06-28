@@ -18,7 +18,7 @@ class PostPolicy
      *
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function show(User $user, Post $post)
     {
         //
     }
@@ -58,6 +58,6 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->role == 'admin';
     }
 }

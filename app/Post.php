@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Events\PostWasUpdatedEvent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -11,6 +13,20 @@ class Post extends Model
 
     // protected $fillable = ['title', 'category_id', 'preview', 'body'];
     protected $guarded = ['id'];
+
+    // public static function boot()
+    // {
+    // parent::boot();
+
+    // static::deleting(function ($post) {
+    //     $post->tags()->sync([]);
+    //     Storage::delete($post->cover);
+    // });
+
+    // static::updated(function ($post) {
+    //     event(new PostWasUpdatedEvent($post));
+    // });
+    // }
 
     // appartiene a un User
     public function user()
@@ -56,6 +72,11 @@ class Post extends Model
         // $this->attributes['cover'] = Storage::disk('s3')->putFile('covers', $cover);
         $this->attributes['cover'] = $cover->store('covers');
     }
+
+    // public function setTagsAttribute($tags)
+    // {
+    //     $this->tags()->sync($tags);
+    // }
 
     public function getCoverAttribute($cover)
     {
