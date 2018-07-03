@@ -16,7 +16,17 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user', 'category', 'tags')->latest()->paginate(15);
+        // $posts = Post::with('user', 'category', 'tags')->latest()->paginate(15);
+        $posts = Post::with('user', 'category', 'tags')->latest();
+
+        // return request()->header();
+
+        if (request()->wantsJson() || request()->ajax()) {
+            return $posts->get();
+        }
+
+        $posts = $posts->paginate(15);
+
         return view('posts.index', compact('posts'));
     }
 
