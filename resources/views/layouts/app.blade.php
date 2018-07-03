@@ -40,6 +40,12 @@
                                 <a class="nav-link btn btn-default" href="{{ route('posts.create') }}">+ Nuovo Post</a>
                             </li>
                         @endauth
+
+                        @foreach(config('app.locales') as $locale => $label)
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-default" href="/{{ $locale }}">{{ $label }}</a>
+                            </li>
+                        @endforeach
                     </ul>
 
                     <!-- Right Side Of Navbar -->

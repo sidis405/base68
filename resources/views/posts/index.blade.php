@@ -3,7 +3,8 @@
 
 @section('content')
 
-    <h3>Latest posts</h3>
+    <h3>{{ __('messages.heading') }}</h3>
+    {{-- <h3>@lang('messages.heading')</h3> --}}
 
     {{-- {{ $posts->links() }} --}}
 
